@@ -27,11 +27,10 @@
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
   new Vue({
-      el:'#demo',
+      el:"#demo",
       data:{
-          firstName:"A",
-          lastName:"B",
-
+          firstName:'L',
+          lastName:'L'
       },
       computed:{
           fullName1(){
@@ -40,26 +39,19 @@
           fullName2(){
               return this.firstName + '-' + this.lastName
           },
-          fullName3:{
+         fullName3:{
               get(){
                   return this.firstName + '-' + this.lastName
               },
-              set(value) {
-                  const names=value.split('-');
-                  this.firstName = names[0];
-                  this.lastName = names[1]
-              }
-          }
-      },
-//      watch:{
-//          firstName(value){
-//              this.fullName2 = value + '-' + this.lastName
-//          }
-//      }
-  });
-//  vm.$watch('lastName', function (value) {
-//      this.fullName2 = this.firstName + '-' + value
-//  })
+             set(value){
+                  const names = value.split('-');
+                  this.firstName=names[0];
+                  this.lastName=names[1];
+             }
+         }
+      }
+
+  })
 </script>
 </body>
 </html>

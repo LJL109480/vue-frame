@@ -17,14 +17,43 @@
 
 <div id="demo">
   <h2>测试: v-for 遍历数组</h2>
+  <ul>
+    <li v-for="(p, index) in presons" :key="index">
+      {{index}}---{{p.name}}---{{p.age}}
+      --<button @click="deletep">删除</button>----<button @click="updatep(index,{name:'josl', age:18})">更新</button>
+    </li>
+  </ul>
 
   <h2>测试: v-for 遍历对象</h2>
-
+  <ul>
+    <li v-for="(v, k) in presons[1]" :key="k">
+      {{k}}={{v}}
+    </li>
+  </ul>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+      el:"#demo",
+      data:{
+          presons:[
+              { name:"jock", age:18},
+              {  name:"Tom", age:19},
+              { name:"Rouse", age:20},
+              {  name:"Uzi", age:22}
+          ]
+      },
+      methods:{
+          deletep(index){
+              this.presons.splice(index, 1)
 
+          },
+          updatep(index, newP){
+              this.presons.splice(index, 1, newP)
+          }
+      }
+  })
 </script>
 </body>
 </html>
