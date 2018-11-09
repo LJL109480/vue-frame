@@ -22,10 +22,28 @@
 <!--需求: 对当前时间进行指定格式显示-->
 <div id="test">
   <h2>显示格式化的日期时间</h2>
-</div>
+  <h3>{{isTime | date-format}}</h3>
+  <h3>{{isTime | date-format('YYYY-MM-DD')}}</h3>
+  <h3>{{isTime | date-format('HH:mm:ss')}}</h3>
 
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
 <script type="text/javascript" src="../js/vue.js"></script>
 <script>
+  Vue.filter("date-format",(value, format="YYYY-MM-DD HH:mm:ss")=> {
+      return moment(value).format(format);
+  })
+  new Vue({
+      el:"#test",
+      data:{
+          isTime:Date.now()
+      },
+      mounted(){
+            setInterval(() =>{
+              this.isTime = Date.now()
+          },1000)
+      }
+  })
 
 </script>
 </body>

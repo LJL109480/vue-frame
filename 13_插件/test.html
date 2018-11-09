@@ -5,10 +5,21 @@
   <title>17_插件</title>
 </head>
 <body>
-
+<div id="test">
+  <P V-my-directive="msg"></P>
+</div>
 <script type="text/javascript" src="../js/vue.js"></script>
+<script src="vue-MyPlugin.js"></script>
 <script type="text/javascript">
-
+ Vue.use(MyPlugin);
+ Vue.myGlobalMethod();
+ const vm = new Vue({
+     el:"#test",
+     data:{
+         msg:"Today is picturesque"
+     }
+ })
+  vm.$myMethod()
 </script>
 </body>
 </html>

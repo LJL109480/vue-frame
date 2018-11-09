@@ -3,6 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>10_过渡&动画1</title>
+  <style>
+    .donghua-enter-active, .donghua-leave-active{
+      transition: opacity 2s;
+    }
+    .donghua-enter, .donghua-leave-to{
+      opacity: 0;
+    }
+    .move-enter-active{
+      transition: all 3s;
+    }
+    .move-leave-active{
+      transition: all 5s;
+    }
+    .move-enter, .move-leave-to{
+      opacity: 0;
+      transform: translateX(30PX);
+    }
+  </style>
 </head>
 <body>
 <!--
@@ -19,11 +37,38 @@
   xxx-leave-active: 指定隐藏的transition
   xxx-enter: 指定隐藏时的样式
 -->
-
+<div id="test">
+    <button @click="isShow = !isShow">按钮</button>
+  <transition name="donghua">
+    <p v-show="isShow"> hello word</p>
+  </transition>
+</div>
+<div id="test2">
+  <button @click="isShow = !isShow">按钮</button>
+  <transition name="move">
+    <p v-show="isShow"> hello word</p>
+  </transition>
+</div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+      el:"#test",
+      data() {
+          return{
+              isShow:true
+          }
+      }
+  });
+  new Vue({
+      el:"#test2",
+      data() {
+          return{
+              isShow:true
+          }
 
+      }
+  })
 </script>
 </body>
 </html>

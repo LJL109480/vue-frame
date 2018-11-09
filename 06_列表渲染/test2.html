@@ -9,10 +9,49 @@
 1. 列表过滤
 2. 列表排序
 -->
+<div id="demo">
+  <input type="text" v-model="searchName">
+  <ul>
+    <li v-for="(p, index) in firlePresons" :key="index">
+      {{index}}---{{p.name}}---{{p.age}}
+    </li>
+  </ul>
+  <button @click="orderType=1">原排序不动</button>
+  <button @click="orderType=2">数组升序</button>
+  <button @click="orderType=3">数组降序</button>
+</div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-
+    new Vue({
+        el: "#demo",
+        data: {
+            presons: [
+                {name: "jock", age: 18},
+                {name: "Tom", age: 19},
+                {name: "Rouse", age: 20},
+                {name: "Uzi", age: 22}
+            ],
+            searchName:"",
+            orderType:1
+        },
+        computed:{
+            firlePresons (){
+                let {presons, searchName, orderType} = this;
+                presons = presons.filter((p, index) => p.name.indexOf(searchName)!==-1);
+                if(orderType!==1){
+                    presons.sort((p1, p2) =>{
+                      if(orderType===3){
+                          return p2.age-p1.age
+                      }else{
+                          return p1.age-p2.age
+                      }
+                    })
+                }
+                return presons
+            }
+        }
+    })
 </script>
 </body>
 </html>

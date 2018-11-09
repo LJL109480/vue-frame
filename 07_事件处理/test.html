@@ -23,15 +23,62 @@
 <div id="example">
 
   <h2>1. 绑定监听</h2>
-
+  <button @click="counter +=1">value</button>
+  <p>hold your hand and grow old together with you{{counter}}</p>
+  <button @click="greet">Greet</button>
+  <h3>内联事件的监听</h3>
+  <button @click="say('hi')">say hi</button>
+  <button @click="say('what')">say what</button>
+  <button @click="warn('Form cannot be submitted yet.', $event)">
+    Submit
+  </button>
   <h2>2. 事件修饰符</h2>
-
+  <a href="http://www.baidu.com" @click.prevent="test">跳转百度</a>
   <h2>3. 按键修饰符</h2>
-
+  <input type="text" @keyup="test1" >
+  <input type="text" @keyup.enter="test2" >
+  <input type="text" @keyup.65="test3" >
 </div>
-
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+ new Vue({
+     el:"#example",
+     data:{
+         counter:0,
+         name:'Vue.js'
+     },
+     methods:{
+         greet:function (event) {
+             alert('Hello' + this.name + '!');
+             if(event){
+                 alert(event.target.tagName)
+             }
+         },
+        say:function (message) {
+            alert(message)
+        },
+         warn:function (messages, event) {
+             if(event){
+                 event.preventDefault()
+             }
+             alert(messages)
+         },
+         test(){
+             alert('百度')
+         },
+         test1(event){
+             if(event.keyCode === 13){
+                 alert(event.target.value + '------' + event.keyCode)
+             }
+         },
+         test2(event){
+             alert(event.target.value)
+         },
+         test3(event){
+             alert(event.target.value)
+         }
+     }
+ })
 
 </script>
 </body>
